@@ -21,13 +21,15 @@ Window {
     minimumWidth: width
     minimumHeight: height
     width: 418
-    height: column.height < 1 ? 1 : column.height
+    height: column.height
     maximumWidth: width
     maximumHeight: height
 
     title: i18n("Desktop")
 
     FontMetrics { id: systemFont; font: color.font }
+
+    visible: height > 0
 
     ColumnLayout {
         id: column
