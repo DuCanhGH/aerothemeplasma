@@ -41,7 +41,7 @@ Item {
     }
 
     function beginAuth() {
-        if(!authenticator.graceLocked) {
+        if(!authenticator.graceLocked && password.enabled) {
             authenticator.startAuthenticating();
             pageView.replaceCurrentItem(welcomePage);
         }
@@ -207,6 +207,13 @@ Item {
         width: parent.width
         height: parent.height
 
+        Timer {
+            id: authTimeout
+            interval: 3000
+            onTriggered: {
+                password.enabled = true;
+            }
+        }
         QQC2.StackView {
             id: pageView
 
@@ -215,6 +222,16 @@ Item {
             initialItem: mainPage
             replaceEnter: Transition {}
             replaceExit: Transition {}
+
+            property bool firstTime: false
+            onCurrentItemChanged: {
+                if(currentItem == mainPage && firstTime) {
+                    password.enabled = false;
+                    authTimeout.start();
+                } else {
+                    firstTime = true;
+                }
+            }
 
             Item {
                 id: mainPage
