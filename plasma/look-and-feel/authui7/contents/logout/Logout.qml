@@ -12,13 +12,13 @@ import org.kde.plasma.private.sessions
 import org.kde.kitemmodels as KItemModels
 import org.kde.plasma.extras as PlasmaExtras
 
+import aeroshell.utils as AeroShellUtils
+
 Image {
     id: root
 
-    height: screenGeometry.height
     width: screenGeometry.width
-
-    source: "/usr/share/sddm/themes/sddm-theme-mod/bgtexture.jpg"
+    height: screenGeometry.height
 
     signal logoutRequested()
     signal haltRequested()
@@ -26,11 +26,13 @@ Image {
     signal rebootRequested()
     signal cancelRequested()
     signal lockScreenRequested()
-    fillMode: Image.PreserveAspectCrop
 
-    SessionManagement {
-        id: sessMan
-    }
+    SessionManagement { id: sessMan }
+
+    AeroShellUtils.SDDM { id: sddm }
+
+    fillMode: Image.PreserveAspectCrop
+    source: "/usr/share/sddm/themes/" + sddm.currentSDDMTheme + "/background"
 
     Plasma5Support.DataSource {
         id: executable
