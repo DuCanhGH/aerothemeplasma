@@ -475,6 +475,8 @@ Item {
                 topMargin: 5
             }
 
+            implicitHeight: 28
+
             label.font.pointSize: 9
             label.font.capitalization: Font.AllUppercase
             focusPolicy: Qt.TabFocus
@@ -509,9 +511,8 @@ Item {
             }
 
             Components.GenericButton {
-                Layout.fillHeight: true
+                implicitHeight: easeOfAccess.height
 
-                iconSize: Kirigami.Units.iconSizes.small
                 iconImage: "../images/osk.png"
                 checked: inputPanel.keyboardActive
                 onClicked: inputPanel.showHide();
