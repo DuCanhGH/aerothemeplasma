@@ -66,13 +66,18 @@ Item
         }
     }
 
-    Background
-    {
+    Rectangle {
+        color: "#1D5F7A"
+        anchors.fill: parent
+    }
+
+    Background {
         id: background
         anchors.fill: parent
         fillMode: Image.Stretch
-        source: Qt.resolvedUrl(config.stringValue("background"))
+        source: Qt.resolvedUrl("background")
     }
+
     Timer {
         id: startupSoundDelay
         interval: config.boolValue("enableStartup") ? 250 : 20
@@ -966,7 +971,7 @@ Item
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 23
         anchors.horizontalCenter: parent.horizontalCenter
-        source: config.stringValue("branding")
+        source: Qt.resolvedUrl("Assets/branding-white.png")
         visible: pages.currentIndex != Main.LoginPage.Startup
     }
     SMOD.GenericButton {
