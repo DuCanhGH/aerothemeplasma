@@ -147,10 +147,10 @@ Make sure to not accidentally delete any other already existing stuff inside the
 
 # NOTE FOR OTHER DISTROS
 
-The script relies on `LIBEXEC_DIR` in order to determine the location of `/usr/$LIBEXEC_DIR/plasma-dbus-run-session-if-needed`, needed for the Wayland session to properly start. By default, this is set to `lib`. If you're installing ATP on a distribution where this is different, such as Fedora, this needs to be set to the appropriate value for your specific distribution. For example, on Fedora, `LIBEXEC_DIR` should be `libexec`:
+The script relies on `LIBEXEC_DIR` and `UAC_LIBEXEC_DIR` in order to determine the location of `/usr/$LIBEXEC_DIR/plasma-dbus-run-session-if-needed` and `/usr/$UAC_LIBEXEC_DIR/polkit-kde-authentication-agent-1` respectively. By default, both are set to `lib`. If you're installing ATP on a distribution where this is different, such as Fedora, these values need to be set to the appropriate values for your specific distribution. For example, on Fedora, `LIBEXEC_DIR` should be `libexec`, and `UAC_LIBEXEC_DIR` should be `libexec/kf6`:
 
 ```bash
-$ LIBEXEC_DIR=libexec bash install.sh --ninja
+$ LIBEXEC_DIR=libexec UAC_LIBEXEC_DIR=libexec/kf6 bash install.sh --ninja
 ```
 
 Additionally, for distros that don't ship the X11 version of KWin, pass the argument `--skip-x11` to the install script in order to avoid building components that depend on X11. 
@@ -184,7 +184,7 @@ This will go through almost every build directory and run `sudo make uninstall` 
 
 ```bash
 # On Arch Linux
-$ sudo pacman -Sy libplasma
+$ sudo pacman -S libplasma
 ```
 
 ### Fonts 
@@ -234,7 +234,7 @@ This should be run outside of the AeroThemePlasma session, preferrably in a regu
 Afterwards, `libplasma` and `polkit-kde-agent` should be reinstalled using your distro's package manager. For example, on Arch Linux:
 
 ```bash
-sudo pacman -Sy libplasma polkit-kde-agent
+sudo pacman -S libplasma polkit-kde-agent
 ```
 
 ### Manual uninstallation
