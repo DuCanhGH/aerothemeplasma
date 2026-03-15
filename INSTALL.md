@@ -13,14 +13,14 @@
 
 It's necessary to have KDE Plasma already installed on your system (plasma-workspace and plasma-desktop) in order to get all the Plasma-specific dependencies for AeroThemePlasma.
 
-Before installing AeroThemePlasma, it's important to know which display server you're running on (Wayland or X11). This can be checked using Plasma's Info Center page in the settings. It's recommended to run AeroThemePlasma on X11 for now, as it's generally the more stable and feature rich experience (certain restrictions on the Wayland session make some effects and features impossible to achieve, this should hopefully be addressed in the future).
+Before installing AeroThemePlasma, it's important to know which display server you're running on (Wayland or X11). This can be checked using Plasma's Info Center page in the settings. It's recommended, **but optional**, to run AeroThemePlasma on X11 for now, as it's generally the more stable and feature rich experience (certain restrictions on the Wayland session make some effects and features impossible to achieve, this should hopefully be addressed in the future).
 
 ### Arch Linux
 
 Required packages:
 
 ```bash
-pacman -S git cmake extra-cmake-modules ninja curl unzip qt6-virtualkeyboard qt6-multimedia qt6-5compat qt6-wayland plasma-wayland-protocols plasma5support kvantum sddm sddm-kcm base-devel plasma-nm plasma-pa plasma-workspace plasma-desktop kwin-x11 plasma-x11-session
+pacman -S git cmake extra-cmake-modules ninja curl unzip qt6-virtualkeyboard qt6-multimedia qt6-5compat qt6-wayland plasma-wayland-protocols plasma5support kvantum sddm sddm-kcm base-devel plasma-nm plasma-pa plasma-workspace plasma-desktop
 ```
 
 Since Plasma 6.4, the X11 session has been separated from the main codebase. On Arch Linux, additional dependencies for X11 include:
