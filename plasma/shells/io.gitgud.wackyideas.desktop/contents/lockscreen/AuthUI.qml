@@ -198,7 +198,7 @@ Item {
     Image {
         id: wallpaper
         anchors.fill: parent
-        source: "/usr/share/sddm/themes/" + sddm.currentSDDMTheme + "/background"
+        source: sddm.currentBackground
     }
 
     Item {
@@ -286,7 +286,10 @@ Item {
                             enabled: loginMa.enabled
                             font.pointSize: 9
                             text: PasswordSync.password
-                            padding: 4
+                            leftPadding: 8
+                            rightPadding: 8
+                            topPadding: 4
+                            bottomPadding: 4
                             placeholderText: i18nd("plasma_lookandfeel_org.kde.lookandfeel", "Password")
                             echoMode: TextInput.Password
                             inputMethodHints: Qt.ImhHiddenText | Qt.ImhSensitiveData | Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
