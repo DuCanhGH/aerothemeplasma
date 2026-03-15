@@ -94,7 +94,7 @@ QtControls.ItemDelegate {
         spacing: Kirigami.Units.smallSpacing
 
         PlasmaComponents3.Label {
-            visible: root.profilesAvailable && !root.isTlpInstalled
+            visible: root.profilesAvailable //&& !root.isTlpInstalled
             text: i18n("Select a power plan:")
             opacity: 0.75
         }
@@ -113,7 +113,7 @@ QtControls.ItemDelegate {
             id: radioButtons
             Layout.leftMargin: Kirigami.Units.smallSpacing+1
             spacing: 0
-            visible: root.profilesAvailable && !root.isTlpInstalled
+            visible: root.profilesAvailable //&& !root.isTlpInstalled
 
             QtControls.RadioButton {
                 id: powerSaverRadio
