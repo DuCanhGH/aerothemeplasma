@@ -98,7 +98,9 @@ Item {
     Connections {
         target: authenticator
 
-        function onFailed() {
+        function onFailed(kind) {
+            // If this is coming from the noninteractive authenticators
+            if(kind != 0) return;
             showMessage(i18nd("kscreenlocker_greet", "The user name or password is incorrect."), "dialog-error");
         }
         function onBusyChanged() {
@@ -114,7 +116,9 @@ Item {
             showMessage(authenticator.errorMessage, "dialog-error");
         }
         function onPromptForSecretChanged() {
-            authenticator.respond(password.text);
+            if(authenticator.promptForSecret && !authenticator.busy) {
+                authenticator.respond(password.text);
+            }
         }
         function onSucceeded() {
             lockSuccess.play();
@@ -313,8 +317,8 @@ Item {
                             Keys.onEnterPressed: root.beginAuth();
                             Keys.onReturnPressed: root.beginAuth();
                             Keys.onEscapePressed: {
-                                password.text = ""
-                                password.text = Qt.binding(() => PasswordSync.password)
+                                password.text = "";
+                                password.text = Qt.binding(() => PasswordSync.password);
                             }
 
                             Binding {
