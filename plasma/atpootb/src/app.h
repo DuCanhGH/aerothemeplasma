@@ -7,6 +7,8 @@
 #include <QWindow>
 #include <QQmlEngine>
 
+#include "effectsmodel.h"
+
 #define SDDM_CONFIG_DIR "/etc/sddm.conf.d"
 #define SDDM_CONFIG_FILE "/etc/sddm.conf"
 #define AEROTHEMEPLASMA_INSTALL_DIR "/usr/share/aerothemeplasma"
@@ -35,4 +37,5 @@ Q_SIGNALS:
 
 private:
     bool m_firstTime = false;
+    EffectsModel model;
 };
