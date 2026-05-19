@@ -23,6 +23,8 @@ If you find my work valuable consider donating:
 
 <a href='https://ko-fi.com/M4M2NJ9PJ' target='_blank'><img height='42' style='border:0px;height:42px;' src='https://storage.ko-fi.com/cdn/kofi2.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
+[![](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com/channels/1140065636857421945/1308878914977796148)
+
 [AeroThemePlasma](https://github.com/aeroshell-desktop/aerothemeplasma) and all of its AeroShell components are available as read-only [GitHub mirrors](https://github.com/aeroshell-desktop/).
 
 ## Installation
@@ -73,17 +75,24 @@ Huge thanks to everyone who helped out along the way by contributing, testing, p
 - [LonghornThemePlasma](https://gitgud.io/catpswin56/longhornthemeplasma) by catpswin56
 - [VB1ThemePlasma](https://gitgud.io/catpswin56/vista-beta-plasma) by catpswin56
 - [Harmony](https://gitgud.io/catpswin56/harmony) by catpswin56
-- [Gadgets](https://gitgud.io/catpswin56/win-gadgets) by catpswin56
-- [WinXplorer](https://gitgud.io/catpswin56/winxplorer) by catpswin56
 - [SMOD Themes](https://gitgud.io/catpswin56/smod-themes) by catpswin56, a collection of themes that can be used with the SMOD window decoration theme
 - [X6Shell](https://gitgud.io/x6shell) by catpswin56
 - [Ice2K.sys](https://toiletflusher.neocities.org/ice2k/) by 0penrc
-- [Sevulet](https://gitgud.io/snailatte/sevulet) by [snailatte](https://gitgud.io/snailatte)
 - [AeroThemePlasma-Nix](https://github.com/nyakase/aerothemeplasma-nix/) by [nyakase](https://github.com/nyakase)
 
 ## Vista variant
 
 Initially I wanted to make a Vista variant of AeroThemePlasma but [catpswin56](https://gitgud.io/catpswin56) beat me to it, use [VistaThemePlasma](https://gitgud.io/aeroshell/vtp/vistathemeplasma) if you want a Vista theme.
+
+## Aero apps for AeroThemePlasma
+- [Aero Dolphin](https://gitgud.io/atmk/dolphin-aero) by Albert Tomanek
+- [Aero GwenView](https://gitgud.io/atmk/gwenview-aero) by Albert Tomanek
+- [Aero KolourPaint](https://invent.kde.org/albert-tomanek/kolourpaint/-/tree/saribbon-aero) by Albert Tomanek
+- [Gadgets](https://gitgud.io/catpswin56/win-gadgets) by catpswin56
+- [WinXplorer](https://gitgud.io/catpswin56/winxplorer) by catpswin56
+- [execbin](https://gitgud.io/catpswin56/execbin) (run dialog) by catpswin56
+- [LinVer](https://gitgud.io/wackyideas/linver) (version dialog) by WackyIdeas
+- ~~[Sevulet](https://gitgud.io/snailatte/sevulet) by [snailatte](https://gitgud.io/snailatte)~~
 
 ## Screenshots
 
