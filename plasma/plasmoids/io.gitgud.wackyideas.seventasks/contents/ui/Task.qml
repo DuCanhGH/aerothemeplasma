@@ -173,6 +173,7 @@ PlasmaCore.ToolTipArea {
     readonly property bool muted: hasAudioStream && audioStreams.every(function (item) {
         return item.muted
     })
+    onMutedChanged: if (!muted && pulseAudio.item) Qt.callLater(tasksRoot.stopPulseAudioMonitoring, task)
 
     readonly property bool highlighted: dragArea.containsMouse
         || (task.contextMenu && task.contextMenu.status === PlasmaExtras.Menu.Open)
@@ -333,6 +334,7 @@ TaskManagerApplet.SmartLauncherItem { }
     }
     function showContextMenu(args) {
         if(task.toolTipVisible) task.hideImmediately();
+        requestAudioStreams({delay: false});
         if(Plasmoid.configuration.disableJumplists) {
             contextMenuTimer.showNormalMenu = true;
             contextMenuTimer.start();
@@ -347,6 +349,7 @@ TaskManagerApplet.SmartLauncherItem { }
     }
 
     function showFallbackContextMenu(args) {
+        requestAudioStreams({delay: false});
         contextMenu = tasksRoot.createContextMenu(task, modelIndex(), args);
         contextMenu.show();
     }
@@ -523,11 +526,34 @@ TaskManagerApplet.SmartLauncherItem { }
         task.audioStreams = streams;
     }
 
+    function requestAudioStreams(args) {
+        if (!task.isWindow || !tasksRoot.requestPulseAudioMonitoring()) {
+            task.audioStreams = [];
+            return false;
+        }
+
+        updateAudioStreams(args);
+        if (!muted) {
+            Qt.callLater(tasksRoot.stopPulseAudioMonitoring, null);
+        }
+
+        return hasAudioStream;
+    }
+
     function toggleMuted() {
+        if (!requestAudioStreams({delay: false})) {
+            return;
+        }
+
+        var wasMuted = muted;
         if (muted) {
             task.audioStreams.forEach(function (item) { item.unmute(); });
         } else {
             task.audioStreams.forEach(function (item) { item.mute(); });
+        }
+
+        if (wasMuted) {
+            Qt.callLater(tasksRoot.stopPulseAudioMonitoring, task);
         }
     }
 
@@ -1636,7 +1662,7 @@ TaskManagerApplet.SmartLauncherItem { }
     }
 
     Component.onCompleted: {
-        if (model.IsWindow) {
+        if (model.IsWindow && pulseAudio.item) {
             updateAudioStreams({delay: false});
         }
 

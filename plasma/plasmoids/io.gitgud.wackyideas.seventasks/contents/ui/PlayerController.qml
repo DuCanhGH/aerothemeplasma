@@ -21,6 +21,12 @@ RowLayout {
 
     spacing: 0
 
+    Component.onCompleted: {
+        if (Plasmoid.configuration.showMuteBtn && root.parentTask) {
+            root.parentTask.requestAudioStreams({delay: false});
+        }
+    }
+
     Item {
         Layout.fillWidth: true
     }

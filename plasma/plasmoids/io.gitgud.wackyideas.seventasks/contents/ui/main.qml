@@ -116,7 +116,6 @@ PlasmoidItem {
 
     property QtObject jumpListComponent: Qt.createComponent("TasksMenu.qml");
     property QtObject contextMenuComponent: Qt.createComponent("ContextMenu.qml")
-    property QtObject pulseAudioComponent: Qt.createComponent("PulseAudio.qml")
 
     property bool needLayoutRefresh: false;
     property var taskClosedWithMouseMiddleButton: []
@@ -130,6 +129,49 @@ PlasmoidItem {
         if(KWindowSystem.isPlatformX11) {
             return KX11Extras.compositingActive;
         } else return true; // Composition is always enabled in Wayland
+    }
+
+    function requestPulseAudioMonitoring() {
+        pulseAudio.active = true;
+        if (!pulseAudio.item) {
+            pulseAudio.active = false;
+        }
+        return pulseAudio.item !== null;
+    }
+
+    function refreshAudioStreams(args) {
+        for (var i = 0; i < tasksModel.count; ++i) {
+            var task = taskList.itemAtIndex(i);
+            if (task) {
+                task.updateAudioStreams(args);
+            }
+        }
+    }
+
+    function clearAudioStreams() {
+        for (var i = 0; i < tasksModel.count; ++i) {
+            var task = taskList.itemAtIndex(i);
+            if (task) {
+                task.audioStreams = [];
+            }
+        }
+    }
+
+    function stopPulseAudioMonitoring(unmutedTask) {
+        for (var i = 0; i < tasksModel.count; ++i) {
+            var task = taskList.itemAtIndex(i);
+            if (task === unmutedTask) {
+                continue;
+            }
+            if (task && task.muted) {
+                return;
+            }
+        }
+
+        if (pulseAudio.active) {
+            pulseAudio.active = false;
+            clearAudioStreams();
+        }
     }
 
     Item {
@@ -406,8 +448,10 @@ PlasmoidItem {
 
         Loader {
             id: pulseAudio
-            sourceComponent: pulseAudioComponent
-            active: pulseAudioComponent.status === Component.Ready
+            active: false
+            source: "PulseAudio.qml"
+
+            onLoaded: tasks.refreshAudioStreams({delay: false})
         }
 
         Timer {
