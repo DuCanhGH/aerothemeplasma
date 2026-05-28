@@ -718,7 +718,7 @@ Item {
         if (main.showDate) {
             // If the date has changed, force size recalculation, because the day name
             // or the month name can now be longer/shorter, so we need to adjust applet size
-            var currentDate = Qt.formatDateTime(clock.dateTime, "yyyy-mm-dd");
+            var currentDate = Qt.formatDateTime(clock.dateTime, "yyyy-MM-dd");
             if (main.lastDate != currentDate) {
                 doCorrections = true;
                 main.lastDate = currentDate
