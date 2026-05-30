@@ -125,26 +125,25 @@ PlasmoidItem {
     property alias taskBackend: backend
     property alias mediaBackend: mpris2Source
 
+    property int pulseAudioUsers: 0
+
     property bool compositionEnabled: {
         if(KWindowSystem.isPlatformX11) {
             return KX11Extras.compositingActive;
         } else return true; // Composition is always enabled in Wayland
     }
 
-    function requestPulseAudioMonitoring() {
-        pulseAudio.active = true;
+    function acquirePulseAudioMonitoring() {
+        ++pulseAudioUsers;
         if (!pulseAudio.item) {
-            pulseAudio.active = false;
+            --pulseAudioUsers;
         }
         return pulseAudio.item !== null;
     }
 
-    function refreshAudioStreams(args) {
-        for (var i = 0; i < tasksModel.count; ++i) {
-            var task = taskList.itemAtIndex(i);
-            if (task) {
-                task.updateAudioStreams(args);
-            }
+    function releasePulseAudioMonitoring() {
+        if (pulseAudioUsers > 0 && --pulseAudioUsers === 0) {
+            clearAudioStreams();
         }
     }
 
@@ -154,23 +153,6 @@ PlasmoidItem {
             if (task) {
                 task.audioStreams = [];
             }
-        }
-    }
-
-    function stopPulseAudioMonitoring(unmutedTask) {
-        for (var i = 0; i < tasksModel.count; ++i) {
-            var task = taskList.itemAtIndex(i);
-            if (task === unmutedTask) {
-                continue;
-            }
-            if (task && task.muted) {
-                return;
-            }
-        }
-
-        if (pulseAudio.active) {
-            pulseAudio.active = false;
-            clearAudioStreams();
         }
     }
 
@@ -448,10 +430,8 @@ PlasmoidItem {
 
         Loader {
             id: pulseAudio
-            active: false
+            active: pulseAudioUsers > 0
             source: "PulseAudio.qml"
-
-            onLoaded: tasks.refreshAudioStreams({delay: false})
         }
 
         Timer {

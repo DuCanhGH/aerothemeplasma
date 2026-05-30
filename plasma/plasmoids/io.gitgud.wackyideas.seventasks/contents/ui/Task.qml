@@ -164,6 +164,7 @@ PlasmaCore.ToolTipArea {
     property QtObject smartLauncherItem: null
     property Item audioStreamIcon: null
     property var audioStreams: []
+    property int audioStreamUsers: 0
     property bool delayAudioStreamIndicator: false
     property bool completed: false
     readonly property bool hasAudioStream: audioStreams.length > 0
@@ -173,7 +174,6 @@ PlasmaCore.ToolTipArea {
     readonly property bool muted: hasAudioStream && audioStreams.every(function (item) {
         return item.muted
     })
-    onMutedChanged: if (!muted && pulseAudio.item) Qt.callLater(tasksRoot.stopPulseAudioMonitoring, task)
 
     readonly property bool highlighted: dragArea.containsMouse
         || (task.contextMenu && task.contextMenu.status === PlasmaExtras.Menu.Open)
@@ -334,7 +334,6 @@ TaskManagerApplet.SmartLauncherItem { }
     }
     function showContextMenu(args) {
         if(task.toolTipVisible) task.hideImmediately();
-        requestAudioStreams({delay: false});
         if(Plasmoid.configuration.disableJumplists) {
             contextMenuTimer.showNormalMenu = true;
             contextMenuTimer.start();
@@ -349,7 +348,6 @@ TaskManagerApplet.SmartLauncherItem { }
     }
 
     function showFallbackContextMenu(args) {
-        requestAudioStreams({delay: false});
         contextMenu = tasksRoot.createContextMenu(task, modelIndex(), args);
         contextMenu.show();
     }
@@ -526,34 +524,34 @@ TaskManagerApplet.SmartLauncherItem { }
         task.audioStreams = streams;
     }
 
-    function requestAudioStreams(args) {
-        if (!task.isWindow || !tasksRoot.requestPulseAudioMonitoring()) {
+    function acquireAudioStreams(args) {
+        if (!task.isWindow || !tasksRoot.acquirePulseAudioMonitoring()) {
             task.audioStreams = [];
             return false;
         }
 
+        ++audioStreamUsers;
         updateAudioStreams(args);
-        if (!muted) {
-            Qt.callLater(tasksRoot.stopPulseAudioMonitoring, null);
-        }
+        return true;
+    }
 
-        return hasAudioStream;
+    function releaseAudioStreams() {
+        if (audioStreamUsers > 0) {
+            --audioStreamUsers;
+            tasksRoot.releasePulseAudioMonitoring();
+        }
     }
 
     function toggleMuted() {
-        if (!requestAudioStreams({delay: false})) {
+        updateAudioStreams({delay: false});
+        if (!hasAudioStream) {
             return;
         }
 
-        var wasMuted = muted;
         if (muted) {
             task.audioStreams.forEach(function (item) { item.unmute(); });
         } else {
             task.audioStreams.forEach(function (item) { item.mute(); });
-        }
-
-        if (wasMuted) {
-            Qt.callLater(tasksRoot.stopPulseAudioMonitoring, task);
         }
     }
 
@@ -561,7 +559,9 @@ TaskManagerApplet.SmartLauncherItem { }
         target: pulseAudio.item
         ignoreUnknownSignals: true // Plasma-PA might not be available
         function onStreamsChanged() {
-            task.updateAudioStreams({delay: true})
+            if (task.audioStreamUsers > 0) {
+                task.updateAudioStreams({delay: true});
+            }
         }
     }
 
@@ -1672,5 +1672,11 @@ TaskManagerApplet.SmartLauncherItem { }
         completed = true;
 
         taskThumbnail = tasksRoot.taskThumbnail;
+    }
+
+    Component.onDestruction: {
+        while (audioStreamUsers > 0) {
+            releaseAudioStreams();
+        }
     }
 }
