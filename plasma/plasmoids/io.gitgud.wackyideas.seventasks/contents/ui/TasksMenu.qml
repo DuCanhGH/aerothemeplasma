@@ -66,6 +66,7 @@ PlasmaCore.Dialog {
     property bool showAllPlaces: false
     property bool alsoCloseTask: false
     property bool secondaryColumn: false
+    property bool ownsAudioStreams: false
 
     property color backgroundColorStatic: "#f1f6fb"
     property color backgroundColorGradient: "white"
@@ -195,6 +196,9 @@ PlasmaCore.Dialog {
     location: PlasmaCore.Types.Floating;
     // Used publicly by other objects to show the dynamically created context menu.
     function show() {
+        if (!ownsAudioStreams && visualParent && visualParent.isWindow) {
+            ownsAudioStreams = visualParent.acquireAudioStreams({delay: false});
+        }
         loadDynamicLauncherActions(get(atm.LauncherUrlWithoutIcon));
         visible = true;
         if(KWindowSystem.isPlatformX11) tasksMenu.y -= slide;
@@ -205,6 +209,10 @@ PlasmaCore.Dialog {
     }
     // Closes the menu gracefully, by first showing a fade out animation before freeing the object from memory.
     function closeMenu() {
+        if (ownsAudioStreams && visualParent) {
+            visualParent.releaseAudioStreams();
+            ownsAudioStreams = false;
+        }
         Plasmoid.disableBlurBehind(tasksMenu);
         if(KWindowSystem.isPlatformX11) tasksMenu.y += slide;
         opacity = 0;
@@ -703,6 +711,9 @@ PlasmaCore.Dialog {
     }
     Component.onDestruction: {
         backend.showAllPlaces.disconnect(showContextMenuWithAllPlaces)
+        if (ownsAudioStreams && visualParent) {
+            visualParent.releaseAudioStreams();
+        }
         if(alsoCloseTask)
             tasksModel.requestClose(modelIndex);
     }

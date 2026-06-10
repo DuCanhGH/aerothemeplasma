@@ -26,6 +26,7 @@ PlasmaExtras.Menu {
     readonly property var atm: TaskManager.AbstractTasksModel
 
     property bool showAllPlaces: false
+    property bool ownsAudioStreams: false
 
     placement: {
         if (Plasmoid.location === PlasmaCore.Types.LeftEdge) {
@@ -57,6 +58,9 @@ PlasmaExtras.Menu {
 
     Component.onDestruction: {
         backend.showAllPlaces.disconnect(showContextMenuWithAllPlaces);
+        if (ownsAudioStreams && visualParent) {
+            visualParent.releaseAudioStreams();
+        }
     }
 
     function showContextMenuWithAllPlaces() {
@@ -70,6 +74,9 @@ PlasmaExtras.Menu {
     function show() {
         Plasmoid.contextualActionsAboutToShow();
 
+        if (!ownsAudioStreams && visualParent && visualParent.isWindow) {
+            ownsAudioStreams = visualParent.acquireAudioStreams({delay: false});
+        }
         loadDynamicLaunchActions(get(atm.LauncherUrlWithoutIcon));
         openRelative();
     }

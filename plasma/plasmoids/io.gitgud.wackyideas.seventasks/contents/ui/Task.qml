@@ -164,6 +164,7 @@ PlasmaCore.ToolTipArea {
     property QtObject smartLauncherItem: null
     property Item audioStreamIcon: null
     property var audioStreams: []
+    property int audioStreamUsers: 0
     property bool delayAudioStreamIndicator: false
     property bool completed: false
     readonly property bool hasAudioStream: audioStreams.length > 0
@@ -523,7 +524,30 @@ TaskManagerApplet.SmartLauncherItem { }
         task.audioStreams = streams;
     }
 
+    function acquireAudioStreams(args) {
+        if (!task.isWindow || !tasksRoot.acquirePulseAudioMonitoring()) {
+            task.audioStreams = [];
+            return false;
+        }
+
+        ++audioStreamUsers;
+        updateAudioStreams(args);
+        return true;
+    }
+
+    function releaseAudioStreams() {
+        if (audioStreamUsers > 0) {
+            --audioStreamUsers;
+            tasksRoot.releasePulseAudioMonitoring();
+        }
+    }
+
     function toggleMuted() {
+        updateAudioStreams({delay: false});
+        if (!hasAudioStream) {
+            return;
+        }
+
         if (muted) {
             task.audioStreams.forEach(function (item) { item.unmute(); });
         } else {
@@ -535,7 +559,9 @@ TaskManagerApplet.SmartLauncherItem { }
         target: pulseAudio.item
         ignoreUnknownSignals: true // Plasma-PA might not be available
         function onStreamsChanged() {
-            task.updateAudioStreams({delay: true})
+            if (task.audioStreamUsers > 0) {
+                task.updateAudioStreams({delay: true});
+            }
         }
     }
 
@@ -1636,7 +1662,7 @@ TaskManagerApplet.SmartLauncherItem { }
     }
 
     Component.onCompleted: {
-        if (model.IsWindow) {
+        if (model.IsWindow && pulseAudio.item) {
             updateAudioStreams({delay: false});
         }
 
@@ -1646,5 +1672,11 @@ TaskManagerApplet.SmartLauncherItem { }
         completed = true;
 
         taskThumbnail = tasksRoot.taskThumbnail;
+    }
+
+    Component.onDestruction: {
+        while (audioStreamUsers > 0) {
+            releaseAudioStreams();
+        }
     }
 }

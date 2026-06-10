@@ -116,7 +116,6 @@ PlasmoidItem {
 
     property QtObject jumpListComponent: Qt.createComponent("TasksMenu.qml");
     property QtObject contextMenuComponent: Qt.createComponent("ContextMenu.qml")
-    property QtObject pulseAudioComponent: Qt.createComponent("PulseAudio.qml")
 
     property bool needLayoutRefresh: false;
     property var taskClosedWithMouseMiddleButton: []
@@ -126,10 +125,35 @@ PlasmoidItem {
     property alias taskBackend: backend
     property alias mediaBackend: mpris2Source
 
+    property int pulseAudioUsers: 0
+
     property bool compositionEnabled: {
         if(KWindowSystem.isPlatformX11) {
             return KX11Extras.compositingActive;
         } else return true; // Composition is always enabled in Wayland
+    }
+
+    function acquirePulseAudioMonitoring() {
+        ++pulseAudioUsers;
+        if (!pulseAudio.item) {
+            --pulseAudioUsers;
+        }
+        return pulseAudio.item !== null;
+    }
+
+    function releasePulseAudioMonitoring() {
+        if (pulseAudioUsers > 0 && --pulseAudioUsers === 0) {
+            clearAudioStreams();
+        }
+    }
+
+    function clearAudioStreams() {
+        for (var i = 0; i < tasksModel.count; ++i) {
+            var task = taskList.itemAtIndex(i);
+            if (task) {
+                task.audioStreams = [];
+            }
+        }
     }
 
     Item {
@@ -406,8 +430,8 @@ PlasmoidItem {
 
         Loader {
             id: pulseAudio
-            sourceComponent: pulseAudioComponent
-            active: pulseAudioComponent.status === Component.Ready
+            active: pulseAudioUsers > 0
+            source: "PulseAudio.qml"
         }
 
         Timer {
