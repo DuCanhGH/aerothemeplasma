@@ -94,8 +94,10 @@ Initially I wanted to make a Vista variant of AeroThemePlasma but [catpswin56](h
 - [WinXplorer](https://gitgud.io/catpswin56/winxplorer) by catpswin56
 - [execbin](https://gitgud.io/catpswin56/execbin) (run dialog) by catpswin56
 - [LinVer](https://gitgud.io/wackyideas/linver) (version dialog) by WackyIdeas
-- [Device Manager](https://github.com/actuallyaridan/linux-devmgmt) by ActuallyAdrian
+- [Device Manager](https://github.com/actuallyaridan/linux-devmgmt) by ActuallyAridan
 - ~~[Sevulet](https://gitgud.io/snailatte/sevulet) by [snailatte](https://gitgud.io/snailatte)~~
+
+To install most of these, the commands to run after cloning are: `mkdir build; cd build; cmake .. -DCMAKE_INSTALL_PREFIX=/usr; sudo make install`.
 
 ## Screenshots
 
