@@ -1,5 +1,7 @@
 # AeroThemePlasma
 
+## HIATUS NOTICE: This is a long overdue announcement, but development will slow down significantly as a result of real life priorities I have to take care of first. Estimated time until I continue development is unknown, but don't expect anything significant in the following few months, until August, probably. Thank you for your patience and support.
+
 ## Microsoft® Windows™ is a registered trademark of Microsoft® Corporation. This name is used for referential use only, and does not aim to usurp copyrights from Microsoft. Microsoft Ⓒ 2025 All rights reserved. All resources belong to Microsoft Corporation.
 
 ## Introduction
@@ -23,7 +25,7 @@ If you find my work valuable consider donating:
 
 <a href='https://ko-fi.com/M4M2NJ9PJ' target='_blank'><img height='42' style='border:0px;height:42px;' src='https://storage.ko-fi.com/cdn/kofi2.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
-[![](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com/channels/1140065636857421945/1308878914977796148)
+[![](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/ZDeT6vdqMp)
 
 [AeroThemePlasma](https://github.com/aeroshell-desktop/aerothemeplasma) and all of its AeroShell components are available as read-only [GitHub mirrors](https://github.com/aeroshell-desktop/).
 
@@ -92,8 +94,10 @@ Initially I wanted to make a Vista variant of AeroThemePlasma but [catpswin56](h
 - [WinXplorer](https://gitgud.io/catpswin56/winxplorer) by catpswin56
 - [execbin](https://gitgud.io/catpswin56/execbin) (run dialog) by catpswin56
 - [LinVer](https://gitgud.io/wackyideas/linver) (version dialog) by WackyIdeas
-- [Device Manager](https://github.com/actuallyaridan/linux-devmgmt) by ActuallyAdrian
+- [Device Manager](https://github.com/actuallyaridan/linux-devmgmt) by ActuallyAridan
 - ~~[Sevulet](https://gitgud.io/snailatte/sevulet) by [snailatte](https://gitgud.io/snailatte)~~
+
+To install most of these, the commands to run after cloning are: `mkdir build; cd build; cmake .. -DCMAKE_INSTALL_PREFIX=/usr; sudo make install`.
 
 ## Screenshots
 
