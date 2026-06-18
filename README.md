@@ -90,11 +90,12 @@ Initially I wanted to make a Vista variant of AeroThemePlasma but [catpswin56](h
 - [Aero Dolphin](https://gitgud.io/atmk/dolphin-aero) by Albert Tomanek
 - [Aero GwenView](https://gitgud.io/atmk/gwenview-aero) by Albert Tomanek
 - [Aero KolourPaint](https://invent.kde.org/albert-tomanek/kolourpaint/-/tree/saribbon-aero) by Albert Tomanek
+- [Device Manager](https://github.com/actuallyaridan/linux-devmgmt) by ActuallyAridan
+- [TuxManager](https://github.com/benapetr/TuxManager) by benapetr
 - [Gadgets](https://gitgud.io/catpswin56/win-gadgets) by catpswin56
 - [WinXplorer](https://gitgud.io/catpswin56/winxplorer) by catpswin56
 - [execbin](https://gitgud.io/catpswin56/execbin) (run dialog) by catpswin56
 - [LinVer](https://gitgud.io/wackyideas/linver) (version dialog) by WackyIdeas
-- [Device Manager](https://github.com/actuallyaridan/linux-devmgmt) by ActuallyAridan
 - ~~[Sevulet](https://gitgud.io/snailatte/sevulet) by [snailatte](https://gitgud.io/snailatte)~~
 
 To install most of these, the commands to run after cloning are: `mkdir build; cd build; cmake .. -DCMAKE_INSTALL_PREFIX=/usr; sudo make install`.
