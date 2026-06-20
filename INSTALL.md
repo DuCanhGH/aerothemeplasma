@@ -172,6 +172,7 @@ Update and do `git pull` on the cloned repository to get new changes:
 ```bash
 $ cd /path/to/aerothemeplasma
 $ git pull
+$ git checkout "Plasma/6.7" # Switch to a new branch, if needed
 ```
 
 Re-run the install script as described in [Getting started](#started). The script will automatically pull changes for all cloned repositories and rebuild them. In case something needs to be rebuilt completely, simply delete the repository folder causing the build error, and re-run the install script.
