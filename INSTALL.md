@@ -68,6 +68,10 @@ On Ubuntu, additional dependencies for X11 include:
 - `kwin-x11`
 - `kwin-x11-dev`
 
+### Gentoo 
+
+Check out [AeroShell Gentoo Overlay](https://gitgud.io/CCF100/aeroshell-gentoo-overlay) by [Chloe Christine Fontenot](https://gitgud.io/CCF100)
+
 ## Migration notice <a name="migration"></a>
 
 AeroThemePlasma has moved to an installation method based on CMake, meant to simplify the entire process, as well as make it easier for distro packaging in the future. The old install scripts are deprecated and no longer work. It's highly recommended to first uninstall the old instance of AeroThemePlasma following these steps, **before pulling in new changes from this repo**:
