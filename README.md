@@ -90,6 +90,7 @@ Initially I wanted to make a Vista variant of AeroThemePlasma but [catpswin56](h
 - [Aero Dolphin](https://gitgud.io/atmk/dolphin-aero) by Albert Tomanek
 - [Aero GwenView](https://gitgud.io/atmk/gwenview-aero) by Albert Tomanek
 - [Aero KolourPaint](https://invent.kde.org/albert-tomanek/kolourpaint/-/tree/saribbon-aero) by Albert Tomanek
+- [Control Panel](https://github.com/actuallyaridan/linux-control) by ActuallyAridan
 - [Device Manager](https://github.com/actuallyaridan/linux-devmgmt) by ActuallyAridan
 - [TuxManager](https://github.com/benapetr/TuxManager) by benapetr
 - [Gadgets](https://gitgud.io/catpswin56/win-gadgets) by catpswin56
