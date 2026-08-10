@@ -72,6 +72,12 @@ On Ubuntu, additional dependencies for X11 include:
 
 Check out [AeroShell Gentoo Overlay](https://gitgud.io/CCF100/aeroshell-gentoo-overlay) by [Chloe Christine Fontenot](https://gitgud.io/CCF100)
 
+### Void Linux
+
+```bash
+xbps-install -S git cmake extra-cmake-modules ninja curl unzip qt6-virtualkeyboard qt6-multimedia qt6-qt5compat qt6-wayland plasma-wayland-protocols wayland-protocols Vulkan-Headers plasma5support kvantum sddm sddm-kcm base-devel plasma-nm plasma-pa plasma-workspace plasma-desktop kf6-kconfig-devel kf6-kcoreaddons-devel kf6-kglobalaccel-devel kf6-kguiaddons-devel kf6-ki18n-devel kf6-kiconthemes-devel kf6-kio-devel kf6-kwindowsystem-devel kf6-knotifications-devel kf6-kpackage-devel kf6-kirigami-devel kf6-syntax-highlighting-devel kf6-kcolorscheme-devel qt6-declarative qt6-declarative-devel qt6-base-devel kf6-ksvg-devel plasma-activities-devel kf6-kdbusaddons-devel kf6-kcrash-devel polkit-qt6-devel kf6-kdecoration-devel kf6-frameworkintegration-devel libksysguard-devel plasma-framework-devel kf6-kcmutils-devel kf6-kconfigwidgets-devel plasma-activities-devel kf6-kdbusaddons-devel kf6-kcrash-devel polkit-qt6-devel kf6-knotifyconfig-devel plasma-workspace-devel plasma-activities-stats-devel qt6-declarative-private-devel kf6-kauth-devel qt6-wayland-devel qt6-qt5compat-devel kf6-kstatusnotifieritem-devel kf6-kxmlgui-devel kf6-qqc2-desktop-style-devel knewstuff-devel kf6-attica-devel kf6-krunner-devel kf6-sonnet-devel plasma5support-devel kf6-knewstuff-devel
+```
+
 ## Migration notice <a name="migration"></a>
 
 AeroThemePlasma has moved to an installation method based on CMake, meant to simplify the entire process, as well as make it easier for distro packaging in the future. The old install scripts are deprecated and no longer work. It's highly recommended to first uninstall the old instance of AeroThemePlasma following these steps, **before pulling in new changes from this repo**:
