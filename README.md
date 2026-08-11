@@ -87,19 +87,29 @@ Huge thanks to everyone who helped out along the way by contributing, testing, p
 Initially I wanted to make a Vista variant of AeroThemePlasma but [catpswin56](https://gitgud.io/catpswin56) beat me to it, use [VistaThemePlasma](https://gitgud.io/aeroshell/vtp/vistathemeplasma) if you want a Vista theme.
 
 ## Aero apps for AeroThemePlasma
+To install most of these, the commands to run after cloning are: `mkdir build; cd build; cmake .. -DCMAKE_INSTALL_PREFIX=/usr; sudo make install`.
+
+### Complete re-creations
+- [Linux Explorer](https://github.com/actuallyaridan/linux-explorer) by ActuallyAridan
+- [Control Panel](https://github.com/actuallyaridan/linux-control) by ActuallyAridan
+- [Device Manager](https://github.com/actuallyaridan/linux-devmgmt) by ActuallyAridan
+- [Windows 7 Minesweeper](https://github.com/actuallyaridan/linux-minesweeper) by ActuallyAridan
+- [TuxManager](https://github.com/benapetr/TuxManager) (task manager) by benapetr
+- [Gadgets](https://gitgud.io/catpswin56/win-gadgets) by catpswin56
+- [execbin](https://gitgud.io/catpswin56/execbin) (run dialog) by catpswin56
+- [LinVer](https://gitgud.io/wackyideas/linver) (version dialog) by WackyIdeas
+
+### KDE app forks
 - [Aero Dolphin](https://gitgud.io/atmk/dolphin-aero) by Albert Tomanek
 - [Aero GwenView](https://gitgud.io/atmk/gwenview-aero) by Albert Tomanek
 - [Aero KolourPaint](https://invent.kde.org/albert-tomanek/kolourpaint/-/tree/saribbon-aero) by Albert Tomanek
-- [Control Panel](https://github.com/actuallyaridan/linux-control) by ActuallyAridan
-- [Device Manager](https://github.com/actuallyaridan/linux-devmgmt) by ActuallyAridan
-- [TuxManager](https://github.com/benapetr/TuxManager) by benapetr
-- [Gadgets](https://gitgud.io/catpswin56/win-gadgets) by catpswin56
-- [WinXplorer](https://gitgud.io/catpswin56/winxplorer) by catpswin56
-- [execbin](https://gitgud.io/catpswin56/execbin) (run dialog) by catpswin56
-- [LinVer](https://gitgud.io/wackyideas/linver) (version dialog) by WackyIdeas
-- ~~[Sevulet](https://gitgud.io/snailatte/sevulet) by [snailatte](https://gitgud.io/snailatte)~~
 
-To install most of these, the commands to run after cloning are: `mkdir build; cd build; cmake .. -DCMAKE_INSTALL_PREFIX=/usr; sudo make install`.
+### Other Aero Apps
+- _Watch this space_
+
+### Development Libraries
+- [libAeroQt](https://gitgud.io/atmk/libaero-qt) -- Re-usable QtWidgets and QML components for writing Aero apps. Also contains function to make glassy window headers.
+- [SARibbon](https://github.com/czyt1988/SARibbon) -- Ribbon control for Qt. Gets styled by libAeroQt.
 
 ## Screenshots
 
