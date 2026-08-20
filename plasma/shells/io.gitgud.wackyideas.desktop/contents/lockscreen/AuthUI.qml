@@ -29,8 +29,8 @@ Item {
 
     signal switchUserClicked()
 
-    property string notification
-    property string notificationIcon
+    property list<string> notification: []
+    property list<string> notificationIcon: []
 
     property alias switchUserVisible: switchUser.visible
     property bool  capsLockOn: false
@@ -48,12 +48,17 @@ Item {
     }
 
     function showMessage(message: string, icon: string) {
+        if(icon == "dialog-error") {
+            root.notificationIcon = [icon, ...root.notificationIcon];
+            root.notification = [message, ...root.notification];
+        } else {
+            root.notificationIcon.push(icon);
+            root.notification.push(message);
+        }
         if(!statusPage.visible) {
             pageView.replaceCurrentItem(statusPage);
             k.forceActiveFocus();
         }
-        root.notification = message;
-        root.notificationIcon = icon;
     }
 
     component CorrectedLabel: Text {
@@ -104,10 +109,10 @@ Item {
             showMessage(i18nd("kscreenlocker_greet", "The user name or password is incorrect."), "dialog-error");
         }
         function onBusyChanged() {
-            if(!authenticator.busy) {
+            /*if(!authenticator.busy && !statusPage.visible) {
                 root.notification = "";
                 root.notificationIcon = "";
-            }
+            }*/
         }
         function onInfoMessageChanged() {
             showMessage(authenticator.infoMessage, "dialog-information");
@@ -421,7 +426,9 @@ Item {
                 id: statusPage
 
                 visible: pageView.currentItem == statusPage
-                onVisibleChanged: k.forceActiveFocus();
+                onVisibleChanged: {
+                    k.forceActiveFocus();
+                }
 
                 ColumnLayout {
                     anchors.centerIn: parent
@@ -430,17 +437,19 @@ Item {
                     spacing: 40
 
                     RowLayout {
+                        id: statusLabel
+                        Layout.fillWidth: true
                         Kirigami.Icon {
                             implicitHeight: 32
                             implicitWidth: 32
 
-                            source: root.notificationIcon
+                            source: root.notificationIcon.length > 0 ? root.notificationIcon[0] : ""
                         }
 
                         CorrectedLabel {
                             Layout.alignment: Qt.AlignVCenter
                             color: "white"
-                            text: root.notification
+                            text: root.notification.length > 0 ? root.notification[0] : ""
                         }
                     }
 
@@ -449,8 +458,14 @@ Item {
 
                         signal accepted()
                         onAccepted: {
-                            pageView.replaceCurrentItem(mainPage);
-                            root.resetFocus(true);
+                            root.notification.shift();
+                            root.notificationIcon.shift();
+
+                            if(root.notification.length == 0) {
+                                pageView.replaceCurrentItem(mainPage);
+                                root.resetFocus(true);
+                            }
+
                         }
 
                         Layout.alignment: Qt.AlignHCenter
