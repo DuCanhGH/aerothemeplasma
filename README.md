@@ -11,11 +11,11 @@ This is a project which aims to recreate the look and feel of Windows 7 as much 
 ATP is in constant development and testing, it has been tested on:
 
 - Arch Linux x64 and other Arch derivatives
-- Plasma 6.7.0, KDE Frameworks 6.27.0, Qt 6.11.1
+- Plasma 6.7.4, KDE Frameworks 6.28.0, Qt 6.11.1
 - 96 DPI scaling, multi monitor
 - X11, Wayland*
 
-*AeroThemePlasma currently lacks full Wayland support, which may result in Wayland-specific issues. 
+*AeroThemePlasma currently lacks full Wayland support, which may result in Wayland-specific issues. Proper Wayland support is planned for Plasma 6.8
 
 ## This software comes "as is" without warranty of any kind. It's always recommended to make backups of your system just in case. I am not responsible for broken systems, please proceed with caution.
 
@@ -24,8 +24,6 @@ The Plasma 5 version of ATP is available as a tag in this repository, however it
 If you find my work valuable consider donating:
 
 <a href='https://ko-fi.com/M4M2NJ9PJ' target='_blank'><img height='42' style='border:0px;height:42px;' src='https://storage.ko-fi.com/cdn/kofi2.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
-
-[![](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/ZDeT6vdqMp)
 
 [AeroThemePlasma](https://github.com/aeroshell-desktop/aerothemeplasma) and all of its AeroShell components are available as read-only [GitHub mirrors](https://github.com/aeroshell-desktop/).
 
@@ -69,6 +67,10 @@ Huge thanks to everyone who helped out along the way by contributing, testing, p
 
 - [MondySpartan](https://www.deviantart.com/mondyspartan/art/Windows-10-Year-2010-Edition-1016859431) for inspiring the notification design
 
+### Contributing 
+
+If you with to contribute in any way, please read [CONTRIBUTING](./CONTRIBUTING.md) for more details.
+
 ### Cool projects you should really check out
 
 - [Geckium](https://github.com/angelbruni/Geckium) by AngelBruni
@@ -97,7 +99,7 @@ To install most of these, the commands to run after cloning are: `mkdir build; c
 - [TuxManager](https://github.com/benapetr/TuxManager) (task manager) by benapetr
 - [Gadgets](https://gitgud.io/catpswin56/win-gadgets) by catpswin56
 - [execbin](https://gitgud.io/catpswin56/execbin) (run dialog) by catpswin56
-- [LinVer](https://gitgud.io/wackyideas/linver) (version dialog) by WackyIdeas
+- [LinVer](https://gitgud.io/wackyideas/linver) (version dialog)
 
 ### KDE app forks
 - [Aero Dolphin](https://gitgud.io/atmk/dolphin-aero) by Albert Tomanek
