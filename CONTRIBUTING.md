@@ -23,13 +23,10 @@ Merge requests should only be done on the [GitGud](https://gitgud.io/aeroshell/a
 
 ## Usage of AI/LLMs 
 
-(For context, the project has started receiving a small amount of AI-assisted merge requests, and as a result I imagine it'd be a good idea to actually take a stance on this.)
+For the record, I personally have never used AI in any capacity for any of my projects, and I don't intend to start now. This section pertains to AI usage by outside contributors, via merge requests, opening issues and sending patches.
 
-In general, the use of generative AI, LLMs, and other kinds of AI ('AI' will be used as a catch-all term moving forward) is highly discouraged within AeroShell and AeroThemePlasma. I personally do not use AI for writing code, creating assets, or for any other kind of assistance, including research, writing text, etc.
+For context, the project has started receiving a small amount of AI-assisted merge requests, and as a result I imagine it'd be a good idea to actually take a stance on this, because I wasn't sure how to handle this for a long time, up until now. After some more consideration and thoughts on the topic, after some revisions of this section, and after a long discussion with the community, the clear and final policy is this: 
 
-For merge requests, and submitted patches for AeroShell and AeroThemePlasma, the use of AI is highly discouraged, too. Some general guidelines:
+### __Please do NOT use AI/LLMs in any context (writing text, code, testing, image/resource generation, and so on) regarding AeroShell and AeroThemePlasma.__ 
 
-- Please do not use AI to submit patches or merge requests. Merge requests that are obviously written with AI, with code that has obviously been created with AI (low quality, vibecoded, non-working, etc.) will be discarded.
-- If you happen to submit a patch or create a merge request that utilizes AI in any capacity, please make sure to explicitly state that on submission.
-- If you must use AI for whatever reason for code submissions, make sure to thoroughly tidy up the code, remove unnecessary comments, and properly test the code you're submitting for crashes and unintended behavior. Likewise, for MR descriptions, please write out the description by yourself.
-- MRs containing AI-generated resources (images, audio, etc.) will be discarded.
+Open merge requests that have AI usage in them will be closed, apologies for the inconvenience. Thank you for understanding. 

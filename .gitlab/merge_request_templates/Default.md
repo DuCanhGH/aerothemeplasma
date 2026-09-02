@@ -2,7 +2,7 @@
 
 ### Related MRs
 
-(Link to other MRs relevant to this one. If this doesn't apply to your MR, this section can be removed)
+(Link to other MRs relevant to this one. **If this doesn't apply to your MR, this section can be removed**)
 
 ### Fixes the following issues
 
@@ -10,10 +10,9 @@
 
 (If the issues are from somewhere else, link to them in this section instead)
 
-(If the MR doesn't fix any existing issues, this section can be removed)
+**(If the MR doesn't fix any existing issues, this section can be removed)**
 
 ## Checklist 
 
 - [ ] I have read [CONTRIBUTING.md](https://gitgud.io/aeroshell/atp/aerothemeplasma/-/blob/master/CONTRIBUTING.md?ref_type=heads)
-- [ ] AI was used in the creation of this MR 
 
