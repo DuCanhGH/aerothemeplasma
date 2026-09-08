@@ -218,7 +218,7 @@ PlasmaCore.Dialog {
 
 		Timer { // Janky wayland problems require janky solutions
 			id: wayland_fix
-			interval: 25
+			interval: 50
 			onTriggered: root.hideOnWindowDeactivate = true;
 		}
         KCoreAddons.KUser {   id: kuser  }  // Used for getting the username and icon.
