@@ -99,6 +99,7 @@ Item {
             sourceModel: recentUsageModel
             property var favoritesModel: globalFavorites
             property int favoritesCount: sourceModel.favoritesModel.count
+            property int favoritesFound: 0
             onFavoritesCountChanged: Qt.callLater(() => { sourceModel.refresh()});
             onCountChanged: Qt.callLater(() => {
                 if(count > Plasmoid.configuration.numberRows) sourceModel.refresh();
@@ -107,7 +108,13 @@ Item {
                 sourceModel.trigger(index, str, ptr);
             }
             filterRowCallback: function(source_row, source_parent) {
-                return source_row < Plasmoid.configuration.numberRows// - sourceModel.favoritesModel.count;
+                if(source_row == 0) favoritesFound = 0;
+				const FavoriteIdRole = sourceModel.KItemModels.KRoleNames.role("favoriteId");
+				const favoriteId = sourceModel.data(sourceModel.index(source_row, 0, source_parent), FavoriteIdRole);
+                var hasFavorite = favoritesIds.idList.indexOf(favoriteId) === -1
+                if(!hasFavorite) favoritesFound++;
+
+                return hasFavorite && source_row < (Plasmoid.configuration.numberRows+favoritesFound)// - sourceModel.favoritesModel.count;
             };
 
         }
