@@ -12,8 +12,6 @@ import org.kde.plasma.private.sessions
 import org.kde.kitemmodels as KItemModels
 import org.kde.plasma.extras as PlasmaExtras
 
-import aeroshell.utils as AeroShellUtils
-
 Image {
     id: root
 
@@ -29,10 +27,8 @@ Image {
 
     SessionManagement { id: sessMan }
 
-    AeroShellUtils.SDDM { id: sddm }
-
     fillMode: Image.PreserveAspectCrop
-    source: sddm.currentBackground
+    source: "../images/background.jpg"
 
     Plasma5Support.DataSource {
         id: executable

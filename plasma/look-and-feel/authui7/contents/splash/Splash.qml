@@ -25,8 +25,6 @@ import org.kde.plasma.core as PlasmaCore
 import QtMultimedia
 import "../components"
 
-import aeroshell.utils as AeroShellUtils
-
 Item {
     id: root
     z: -9
@@ -52,11 +50,9 @@ Item {
         anchors.fill: parent
     }
 
-    AeroShellUtils.SDDM { id: sddm }
-
     Image {
         id: bgtexture
-        source: sddm.currentBackground
+        source: "../images/background.jpg"
         anchors.fill: parent
     }
 

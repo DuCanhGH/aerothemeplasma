@@ -20,8 +20,6 @@ import org.kde.kirigamiaddons.sounds
 import org.kde.plasma.workspace.components as PW
 import org.kde.plasma.plasma5support as Plasma5Support
 
-import aeroshell.utils as AeroShellUtils
-
 import "../components" as Components
 
 Item {
@@ -200,14 +198,6 @@ Item {
 
         NumberAnimation { target: fadeRect; property: "opacity"; from: 0; to: 1; duration: 600 }
         ScriptAction { script: quitDelay.start(); }
-    }
-
-    AeroShellUtils.SDDM { id: sddm }
-
-    Image {
-        id: wallpaper
-        anchors.fill: parent
-        source: sddm.currentBackground
     }
 
     Item {

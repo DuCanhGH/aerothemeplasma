@@ -25,11 +25,6 @@ Item {
 
     SessionManagement { id: sessionManagment }
 
-    Rectangle {
-        anchors.fill: parent
-        color: "#1D5F7A"
-    }
-
     AuthUI {
         id: authUI
 
